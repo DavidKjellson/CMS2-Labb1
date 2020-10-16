@@ -16,19 +16,26 @@ function uppgift2($message, $headerprop)
 class Food
 {
   public $name;
-  function set_name($name)
+  public function __construct($name)
   {
     $this->name = $name;
   }
-  function get_name()
+  public function food()
   {
-    return $this->name;
+    echo $this->name;
+  }
+}
+class Sandwich extends Food
+{
+  public function eatsand()
+  {
+    echo "Nu åts en ";
   }
 }
 function eat()
 {
-  $macka = new Food();
-  $macka->set_name("macka");
-  return "Nu åts en " . $macka->get_name();
+  $macka = new Sandwich("macka");
+  echo $macka->eatsand();
+  echo $macka->food();
 }
 ?>
