@@ -1,6 +1,6 @@
 <?php
 
-// Uppgift 4-6
+// Uppgift 8
 
 class Food
 {
@@ -14,9 +14,12 @@ class Food
     echo "Nu åts en " . $this->name . ".";
   }
 }
-class Sandwich extends Food
+class Sandwich extends Food implements Grillable
 {
-  // private $ingredients = ["butter", "cheese", "ham", "mustard", "ketchup", "banana", "beef", "chicken", "prawn", "snail", "fish", "lettuce", "tomato", "vegemite"];
+  function grilla($grill)
+  {
+    echo 'Nu åts en ' . $grill . '.';
+  }
   private $options;
   public function eat()
   {
@@ -36,9 +39,16 @@ class Sandwich extends Food
     $this->options = $options;
   }
 }
+
+interface Grillable
+{
+  function grilla($grill);
+}
+
 $regular = new Sandwich('vanlig macka');
 $nasty = new Sandwich('vidrig macka');
-$vego = new Sandwich('vegansk maska');
+$vego = new Sandwich('vegansk macka');
+$grillad = new Sandwich('grillad macka');
 
 $regular->set_options(["butter" => 1, "cheese" => 2, "ham" => 2, "lettuce" => 1, "tomato" => 2]);
 $nasty->set_options(["ketchup" => 1, "banana" => 1, "snail" => 3, "vegemite" => 1]);
@@ -47,3 +57,4 @@ $vego->set_options(["mustard" => 1, "ketchup" => 1, "banana" => 1, "lettuce" => 
 $regular->eat();
 $nasty->eat();
 $vego->eat();
+$grillad->grilla('grillad macka');
